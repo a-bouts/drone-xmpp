@@ -1,0 +1,18 @@
+workspace:
+  base: /go
+  path: .
+
+pipeline:
+  build:
+    image: golang
+    commands:
+      - go get github.com/mattn/go-xmpp
+      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o drone-xmpp drone-xmpp
+
+  publish:
+    image: plugins/docker
+    registry: no-cloud.fr
+    repo: no-cloud.fr/drone-xmpp
+    tag: latest
+    file: Dockerfile
+
