@@ -143,7 +143,7 @@ func (p Plugin) Message(repo Repo, build Build) []string {
 	} else {
 		icon = "❌"
 	}
-	return []string{fmt.Sprintf("%s %s (%s) by %s\n> 『%s』\n\n%s",
+	return []string{fmt.Sprintf("%s %s (%s) by %s\n『%s』\n%s",
 		icon,
 		repo.Name,
 		build.Branch,
