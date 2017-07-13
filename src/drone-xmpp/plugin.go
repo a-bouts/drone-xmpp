@@ -89,6 +89,8 @@ func (p Plugin) Exec() error {
 		message = p.Message(p.Repo, p.Build)
 	}
 
+	log.Println(message)
+
 	xmpp.DefaultConfig = tls.Config{
 		InsecureSkipVerify: true,
 	}
@@ -99,16 +101,13 @@ func (p Plugin) Exec() error {
 		Password:      p.Config.Password,
 		NoTLS:         true,
 		StartTLS:      true,
-                TLSConfig: &tls.Config{
-                        ServerName: p.Config.Host,
-                        InsecureSkipVerify: false,
-        	},
 		Debug:         false,
 		Session:       false,
 		Status:        "xa",
 		StatusMessage: "I for one welcome our new codebot overlords.",
 	}
 
+	log.Println("create client")
 	talk, err := options.NewClient()
 
 	if err != nil {
@@ -118,8 +117,11 @@ func (p Plugin) Exec() error {
 	}
 
 	// send message.
+	log.Println("send message")
 	for _, user := range p.Config.To {
+		log.Println(user)
 		for _, value := range trimElement(message) {
+			log.Println(value)
 			txt, err := template.RenderTrim(value, p)
 			if err != nil {
 				return err
