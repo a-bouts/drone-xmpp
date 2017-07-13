@@ -97,8 +97,12 @@ func (p Plugin) Exec() error {
 		Host:          p.Config.Host,
 		User:          p.Config.Jid,
 		Password:      p.Config.Password,
-		NoTLS:         false,
+		NoTLS:         true,
 		StartTLS:      true,
+                TLSConfig: &tls.Config{
+                        ServerName: p.Config.Host,
+                        InsecureSkipVerify: false,
+        	},
 		Debug:         false,
 		Session:       false,
 		Status:        "xa",
