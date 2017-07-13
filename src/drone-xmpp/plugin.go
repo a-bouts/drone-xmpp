@@ -136,11 +136,19 @@ func (p Plugin) Exec() error {
 
 // Message is plugin default message.
 func (p Plugin) Message(repo Repo, build Build) []string {
-	return []string{fmt.Sprintf("[%s] <%s> (%s)『%s』by %s",
-		build.Status,
-		build.Link,
+
+	var icon string
+	if build.Status == "success" {
+		icon = "✔"
+	} else {
+		icon = "❌"
+	}
+	return []string{fmt.Sprintf("%s %s (%s) by %s\n> 『%s』\n\n%s",
+		icon,
+		repo.Name,
 		build.Branch,
-		build.Message,
 		build.Author,
+		build.Message,
+		build.Link,
 	)}
 }
