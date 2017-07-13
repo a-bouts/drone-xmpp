@@ -65,8 +65,8 @@ func trimElement(keys []string) []string {
 	return newKeys
 }
 
-func serverName(host string) string {
-	return strings.Split(host, ":")[0]
+func serverName(jid string) string {
+	return strings.Split(jid, "@")[0]
 }
 
 // Exec executes the plugin.
