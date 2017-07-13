@@ -6,6 +6,9 @@ pipeline:
   build:
     image: golang
     commands:
+      - go get github.com/joho/godotenv
+      - go get github.com/urfave/cli
+      - go get github.com/appleboy/drone-facebook/template
       - go get github.com/mattn/go-xmpp
       - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o drone-xmpp drone-xmpp
 
