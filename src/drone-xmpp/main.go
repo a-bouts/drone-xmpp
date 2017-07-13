@@ -152,7 +152,7 @@ func run(c *cli.Context) error {
 		},
 		Config: Config{
 			Host:       c.String("xmpp.host"),
-			Jid:        c.String("xmpp.username"),
+			Jid:        c.String("xmpp.jid"),
 			Password:   c.String("xmpp.password"),
 			To:         c.StringSlice("xmpp.to"),
 			Message:    c.StringSlice("message"),
