@@ -108,6 +108,7 @@ func (p Plugin) Exec() error {
 	}
 
 	log.Println("create client")
+	log.Println(options)
 	talk, err := options.NewClient()
 
 	if err != nil {
